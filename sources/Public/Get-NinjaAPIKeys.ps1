@@ -12,15 +12,16 @@ Function Get-NinjaAPIKeys {
 
     Process
     {
-        $AccessKeyID = Get-ItemProperty -Path "HKLM:\SOFTWARE\PoSHNinjaRMM\" -Name "AccessKeyID" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty AccessKeyID
-        $SecretAccessKey = Get-ItemProperty -Path "HKLM:\SOFTWARE\PoSHNinjaRMM\" -Name "SecretAccessKey" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty SecretAccessKey
+        $StoredCredential = Get-StoredCredential -Target "https://api.ninjarmm.com/v1/"
+        $AccessKeyID = $StoredCredential.UserName
+        $SecretAccessKey = $StoredCredential.GetNetworkCredential().Password
     }
 
     End
     {
         If ($AccessKeyID -eq $Null -or $SecretAccessKey -eq $Null) 
         {
-            Write-Error "The Ninja API keys not set in registry, use Set-NinjaKeys to set them"
+            Write-Error "The Ninja API keys not set in the credential store, use Set-NinjaKeys to set them"
         }
         
         Else 

@@ -34,7 +34,7 @@ Function New-NinjaRequestHeader {
         #Generate the String by concatenating the inputs together
         $StringToSign = $HTTPVerb + "`n" + $ContentMD5 + "`n" + $ContentType + "`n" + $Date + "`n" + $Resource
 
-        $Authorization = New-NinjaAuthroization -StringToSign $StringToSign -AccessKeyID $AccessKeyID -SecretAccessKey $SecretAccessKey
+        $Authorization = New-NinjaAuthorization -StringToSign $StringToSign -AccessKeyID $AccessKeyID -SecretAccessKey $SecretAccessKey
 
         $Header = @{"Authorization" = $Authorization; "Date" = $Date}
 

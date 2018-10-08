@@ -1,4 +1,4 @@
-Function New-NinjaAuthroization {
+Function New-NinjaAuthorization {
 
     <#
 
@@ -12,7 +12,7 @@ Function New-NinjaAuthroization {
         PS C:> $String = "GET`n`n`nSun, 01 May 2016 06:51:10 GMT`n/v1/customers"
         PS C:> $AccessKeyID = "TF4STGMDR4H7AEXAMPLE"
         PS C:> $SecretAccessKey = "eh14c4ngchhu6283he03j6o7ar2fcuca0example"
-        PS C:> New-NinajAuthroization -StringToSign $String -AccessKeyID $AccessKeyID -SecretAccessKey $SecretAccessKey
+        PS C:> New-NinajAuthorization -StringToSign $String -AccessKeyID $AccessKeyID -SecretAccessKey $SecretAccessKey
         NJ TF4STGMDR4H7AEXAMPLE:rEZWuXR0X1wX3autLTHIl2zX98I=
 
     #>

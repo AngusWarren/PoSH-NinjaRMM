@@ -16,10 +16,10 @@ Function Remove-NinjaApiKeys {
         {
         
             $title = $Null
-            $message = "Delete Ninja API keys from Registry?"
+            $message = "Delete Ninja API keys from the credential store?"
             
-            $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "API Keys WILL be deleted from the Registry"
-            $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "API keys will NOT be deleted from the Registry"
+            $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "API Keys WILL be deleted from the credential store"
+            $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "API keys will NOT be deleted from the credential store"
 
             $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
 
@@ -27,14 +27,14 @@ Function Remove-NinjaApiKeys {
 
             Switch ($result)
                 {
-                    0 { Remove-Item -Path "HKLM:\Software\PoSHNinjaRMM" -Force -ErrorAction SilentlyContinue }
+                    0 { Remove-StoredCredential -Target "https://api.ninjarmm.com/v1/" }
                     1 { Write-Output "Did NOT remove API keys." }
                 }
         }
 
         If ($Force) 
         {
-            Remove-Item -Path "HKLM:\Software\PoSHNinjaRMM" -Force -ErrorAction SilentlyContinue
+            Remove-StoredCredential -Target "https://api.ninjarmm.com/v1/"
         }
     }
 
